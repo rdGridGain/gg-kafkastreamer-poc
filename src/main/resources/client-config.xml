@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="VendorClient" class="com.feeder.VendorNewKafkaStreamerClient"/>
+    <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+        <property name="peerClassLoadingEnabled" value="true"/>
+        <property name="clientMode" value="true"/>
+
+        <property name="cacheConfiguration">
+            <list>
+                <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="VENDOR_SOURCE_CACHE"/>
+                    <property name="cacheMode" value="PARTITIONED"/>
+                    <property name="atomicityMode" value="TRANSACTIONAL"/>
+                    <property name="writeSynchronizationMode" value="FULL_SYNC"/>
+                    <property name="backups" value="1"/>
+                    <property name="indexedTypes">
+                        <list>
+                            <value>java.lang.Integer</value>
+                            <value>com.model.Vendor</value>
+                        </list>
+                    </property>
+                </bean>
+                <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="VENDOR_AGGREGATE_CACHE"/>
+                    <property name="cacheMode" value="PARTITIONED"/>
+                    <property name="atomicityMode" value="TRANSACTIONAL"/>
+                    <property name="writeSynchronizationMode" value="FULL_SYNC"/>
+                    <property name="backups" value="1"/>
+                    <property name="indexedTypes">
+                        <list>
+                            <value>java.lang.Long</value>
+                            <value>com.model.VendorAgg</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+
+        <property name="lifecycleBeans">
+            <ref bean="VendorClient"/>
+        </property>
+		<property name="pluginConfigurations">
+            <list>
+                <bean class="org.gridgain.grid.configuration.GridGainConfiguration">
+                    <property name="rollingUpdatesEnabled" value="true"/>
+                </bean>
+            </list>
+        </property>
+
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+                        <property name="addresses">
+                            <list>
+							<!-- Put IP address of server node IP-->
+                                <value>127.0.0.1:47500..47509</value>
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+</beans>

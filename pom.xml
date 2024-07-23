@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.intuit</groupId>
+    <artifactId>intuit-vendor-poc</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <gridgain.version>8.8.4</gridgain.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>GridGain External Repository</id>
+            <url>http://www.gridgainsystems.com/nexus/content/repositories/external</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>commons-cli</groupId>
+            <artifactId>commons-cli</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.gridgain</groupId>
+            <artifactId>ignite-spring</artifactId>
+            <version>${gridgain.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.gridgain</groupId>
+            <artifactId>ignite-core</artifactId>
+            <version>${gridgain.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.gridgain</groupId>
+            <artifactId>ignite-rest-http</artifactId>
+            <version>${gridgain.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.ignite</groupId>
+            <artifactId>ignite-kafka-ext</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.gridgain</groupId>
+            <artifactId>ignite-indexing</artifactId>
+            <version>${gridgain.version}</version>
+        </dependency>
+
+        <!-- Add this dependency to use GridGain Enterprise Edition features -->
+        <dependency>
+            <groupId>org.gridgain</groupId>
+            <artifactId>gridgain-core</artifactId>
+            <version>${gridgain.version}</version>
+        </dependency>
+
+        <!-- Add this dependency to use GridGain Ultimate Edition features. -->
+        <dependency>
+            <groupId>org.gridgain</groupId>
+            <artifactId>gridgain-ultimate</artifactId>
+            <version>${gridgain.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.kafka/connect-json -->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>connect-json</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220320</version>
+        </dependency>
+
+
+    </dependencies>
+
+</project>
