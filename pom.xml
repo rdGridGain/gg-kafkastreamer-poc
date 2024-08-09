@@ -21,7 +21,7 @@
     </build>
 
     <properties>
-        <gridgain.version>8.8.4</gridgain.version>
+        <gridgain.version>8.8.34</gridgain.version>
     </properties>
 
     <repositories>
